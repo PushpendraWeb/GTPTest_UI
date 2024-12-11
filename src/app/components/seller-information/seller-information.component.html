@@ -1,0 +1,50 @@
+<div
+    class="bg-white md:mx-auto rounded shadow-xl w-full md:w-1/2 overflow-hidden">
+    <div class="h-[140px] bg-gradient-to-r from-cyan-500 to-blue-500"></div>
+    <div class="px-5 py-2 flex flex-col gap-3 pb-6">
+        <div
+            class="h-[90px] shadow-md w-[90px] rounded-full border-4 overflow-hidden -mt-14 border-white"><img
+                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8YXZhdGFyfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60"
+                class="w-full h-full rounded-full object-center object-cover"></div>
+        <div class>
+            <h3
+                class="text-xl text-slate-900 relative font-bold leading-6">{{sellerproduct?.full_name}}</h3>
+            <p class="text-sm text-gray-600 mt-4">Email:
+                {{sellerproduct?.email}}</p>
+            <p class="text-sm text-gray-600 mt-4">Mobile:
+                {{sellerproduct?.mobile_no}}</p>
+        </div>
+
+        <h4 class="text-md font-medium leading-3">Address</h4>
+        <p class="text-sm text-stone-500">{{sellerproduct?.address}}
+            {{sellerproduct?.zip_code}}</p>
+        <h4 class="text-md font-medium leading-3">Products</h4>
+        <div *ngIf="sellerProductsData?.length; else noProduct">
+            <div class="flex flex-col gap-3"
+                *ngFor="let sellerProd of sellerProductsData; let i = index">
+                <div
+                    class="flex items-center gap-3 px-2 py-3 bg-white rounded border w-full">
+                    <img [src]="imgurl + sellerProd?.main_image"
+                        alt="Product Image">
+                    <div class="leading-3 mb-1">
+                        <p
+                            class="text-sm font-bold text-slate-700">{{sellerProd?.product_name}}</p>
+                        <span class="text-xs text-slate-600">{{sellerProd?.MRP |
+                            currency:'INR'}}</span>
+                    </div>
+                    <p
+                        class="text-sm text-slate-500 self-start ml-auto">{{sellerProd?.product_details}}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- No Product Template -->
+        <ng-template #noProduct>
+            <div class="flex flex-col items-center gap-4 py-10">
+                <p class="text-lg text-slate-700">No products available.</p>
+
+            </div>
+        </ng-template>
+
+    </div>
+</div>

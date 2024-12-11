@@ -1,0 +1,131 @@
+<body class="bg-gray-50">
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Product Images -->
+            <div class="space-y-4">
+                <!-- Placeholder for Three.js canvas -->
+                <div
+                    class="bg-white rounded-lg shadow-lg aspect-square flex items-center justify-center">
+                    <img [src]="imgurl+byIdProductData?.main_image"
+                        alt="Nike Air Max 2024" class="rounded-lg" />
+                </div>
+
+            </div>
+
+            <!-- Product Info -->
+            <div class="space-y-6">
+                <div>
+                    <h1
+                        class="text-3xl font-bold text-gray-900">{{byIdProductData?.product_name}}</h1>
+                    <p class="text-gray-500"><span class="font-bold">Title:
+                        </span>{{byIdProductData?.title}}</p>
+                </div>
+
+                <div>
+                    <span class="text-2xl font-bold text-gray-900">Price:
+                        {{byIdProductData?.sale_price |
+                        currency:'INR'}}</span>
+                </div>
+                <div>
+                    <span
+                        class="text-2xl font-bold text-gray-400 line-through">MRP:
+                        {{byIdProductData?.MRP |
+                        currency:'INR'}}</span>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-2">Quantity :
+                        {{byIdProductData?.quantity}}</h3>
+
+                </div>
+
+                <div class="space-y-4">
+                    <button
+                        class="w-full bg-black text-white py-4 rounded-full hover:bg-gray-800"
+                        (click)="buyProduct(byIdProductData?.id)">Buy
+                        Now</button>
+                </div>
+
+                <div>
+                    <h3 class="text-lg font-semibold mb-2">Product
+                        Description</h3>
+                    <p
+                        class="text-gray-600">{{byIdProductData?.product_details}}</p>
+                </div>
+
+            </div>
+        </div>
+
+        <form [formGroup]="pollForm" class="mt-4" (ngSubmit)="onSubmit()">
+            <div class="space-y-4">
+                <!-- User Name -->
+                <div>
+                    <label for="userName"
+                        class="block text-sm font-medium text-gray-700">User
+                        Name</label>
+                    <input id="userName" type="text" formControlName="userName"
+                        class="block w-full px-3 py-2 border border-gray-300 rounded-md"
+                        placeholder="Enter your name" />
+                    <p
+                        *ngIf="pollForm.get('userName')?.touched && pollForm.get('userName')?.invalid"
+                        class="text-red-500 text-sm">
+                        Please enter your name.
+                    </p>
+                </div>
+
+                <!-- Product ID -->
+
+                <!-- Message -->
+                <div>
+                    <label for="message"
+                        class="block text-sm font-medium text-gray-700">Message</label>
+                    <textarea id="message" formControlName="message"
+                        class="block w-full px-3 py-2 border border-gray-300 rounded-md"
+                        placeholder="Enter your message"></textarea>
+                    <p
+                        *ngIf="pollForm.get('message')?.touched && pollForm.get('message')?.invalid"
+                        class="text-red-500 text-sm">
+                        Message is required.
+                    </p>
+                </div>
+
+                <!-- Submit Button -->
+                <div>
+                    <button type="submit"
+                        class="w-full bg-blue-600 py-2 text-white rounded-md hover:bg-blue-700"
+                        [disabled]="pollForm.invalid">
+                        Submit Poll
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Reviews Section -->
+        <section class="mt-16">
+            <h2 class="text-2xl font-bold mb-6 ">Customer Reviews
+                [{{pollings!.length}}]</h2>
+            <div *ngFor="let pol of pollings" class="space-y-6 m-2">
+                <!-- Review 1 -->
+                <div class="bg-white p-6 rounded-lg shadow">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <div class="flex text-yellow-400 mb-1">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <h3 class="font-semibold">{{pol?.username}}</h3>
+                        </div>
+                        <span
+                            class="text-gray-500">{{pol.created_on|date}}</span>
+                    </div>
+                    <p class="text-gray-600">{{pol?.description}}</p>
+                </div>
+
+            </div>
+        </section>
+    </main>

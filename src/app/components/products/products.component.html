@@ -1,0 +1,89 @@
+<section id="projects" class=" py-10 px-12 max-w-[1320px] mx-auto">
+    <div
+        class="grid grid-flow-row gap-8 text-neutral-600 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        @for (item of allRandomData; track $index) {
+        <div
+            class="my-8 rounded shadow-lg shadow-gray-200 dark:shadow-gray-900 duration-300 relative">
+            <div
+                class="relative z-10 bg-white dark:bg-gray-100 rounded-2xl overflow-hidden hover:scale-105 duration-300 p-4 rounded-xl">
+                <img id="proj-img" [src]="imgurl + item?.main_image"
+                    class="rounded-t h-72 w-full object-cover" />
+                <div id="proj-details" class="py-2">
+                    <p
+                        class="text-xl text-center font-bold leading-relaxed text-gray-800 dark:text-gray-300">
+                        {{item.product_name}}
+                    </p>
+                    <div>
+                        <span class="font-bold">Price:
+                        </span>{{item.sale_price}}
+                    </div>
+                    <div>
+                        <span class="font-bold">MRP: </span>{{item.MRP}}
+                    </div>
+
+                    <div>
+                        <p>
+                            <span class="font-bold">Product Details:</span>
+                            {{item.product_details}}
+                        </p>
+                    </div>
+                </div>
+                <div id="social-links"
+                    class="border-t flex items-center justify-between py-2">
+
+                    <a [routerLink]="['/product-details/' + item.id]"
+                        routerLinkActive="router-link-active"
+                        class="bg-gray-300 p-2 mx-4 rounded-lg hover:bg-gray-400 hover:text-white duration-300">View</a>
+                </div>
+            </div>
+        </div>
+        }
+
+    </div>
+
+</section>
+
+<section>
+    <div class="flex items-center bg-gray-100"
+        style="font-family: 'Muli', sans-serif;">
+        <div class="container ml-auto mr-auto flex flex-wrap items-start">
+            <div class="w-full pl-5 lg:pl-2 mb-4 mt-4">
+                <h1 class="text-3xl lg:text-4xl text-gray-700 font-extrabold">
+                    Best Sellers
+                </h1>
+            </div>
+            @for (item of seller; track $index) {
+            <div
+                class="w-full md:w-1/2 lg:w-1/4 pl-5 pr-5 mb-5 lg:pl-2 lg:pr-2">
+                <div
+                    class="bg-white rounded-lg m-h-64 p-2 transform hover:translate-y-2 hover:shadow-xl transition duration-300">
+                    <figure class="mb-2">
+                        <img src="../../../assets/user.png" alt
+                            class="h-20 ml-auto mr-auto cursor-pointer"
+                            [routerLink]="['seller-info/'+item.id]" />
+                    </figure>
+                    <div class="rounded-lg p-4 bg-gray-100 flex flex-col">
+                        <div>
+                            <h5
+                                class="text-black text-2xl font-bold leading-none">
+                                {{item.full_name}}
+                            </h5>
+                            <div>
+                                <span
+                                    class="text-xs text-gray-400 leading-none">Mobile
+                                    No: {{item.mobile_no}}</span>
+                            </div>
+                            <div>
+                                <span
+                                    class="text-xs text-gray-400 leading-none">Email:
+                                    {{item.email}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+
+    </div>
+</section>
