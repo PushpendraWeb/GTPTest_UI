@@ -53,7 +53,7 @@ export class SupplierDashboardComponent implements OnInit {
 
         this.base.GetAuth('/get-by-id-product/' + id).subscribe((res: any) => {
             console.log(res);
-            const { MRP, discount, id, main_image, product_details, product_name, quantity, sale_price, title } = res
+            const { MRP, discount, id, main_image, product_details, product_name, quantity, sale_price, title } = res.data.productData
             this.productForm.patchValue({
                 productName: product_name,
                 title: title,
