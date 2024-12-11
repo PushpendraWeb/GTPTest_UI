@@ -22,6 +22,17 @@ export class SupplierDashboardComponent implements OnInit {
         }
         this.imgurl = this.base.imgurl;
         this.getproductslist()
+
+        this.productForm = this.fb.group({
+            id: ['0'],
+            productName: ['', [Validators.required]],
+            title: ['', [Validators.required]],
+            description: ['', [Validators.required]],
+            quantity: ['', [Validators.required, Validators.minLength(1)]],
+            MRP: ['', [Validators.required]],
+            productImage: [''],
+            discount: ['', [Validators.required]]
+        });
     }
 
     Productlist: any;
@@ -33,16 +44,8 @@ export class SupplierDashboardComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.productForm = this.fb.group({
-            id: ['0'],
-            productName: ['', [Validators.required]],
-            title: ['', [Validators.required]],
-            description: ['', [Validators.required]],
-            quantity: ['', [Validators.required, Validators.minLength(1)]],
-            MRP: ['', [Validators.required]],
-            productImage: ['', [Validators.required]],
-            discount: ['', [Validators.required]]
-        });
+        console.log("product =>", this.productForm.value)
+
 
     }
 
@@ -64,6 +67,7 @@ export class SupplierDashboardComponent implements OnInit {
         })
     }
     onSubmit() {
+        console.log("formm =>", this.productForm.value)
         if (this.productForm.valid) {
             if (this.productForm.value.id == 0) {
                 this.base.PostAuth('/add-product', { ...this.productForm.value }).subscribe((res: any) => {
