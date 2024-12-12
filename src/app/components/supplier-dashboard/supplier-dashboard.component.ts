@@ -90,8 +90,8 @@ export class SupplierDashboardComponent implements OnInit {
         }
     }
 
-    uploadFile(file: any) {
-        this.base.Postimg("upload-image", file).subscribe((res: any) => {
+    uploadFile(files: any) {
+        this.base.Postimg("upload-image", files).subscribe((res: any) => {
             this.productForm.patchValue({
                 productImage: res.image
             });

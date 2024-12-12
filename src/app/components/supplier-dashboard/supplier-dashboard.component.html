@@ -62,10 +62,9 @@
                                     for="fileUploader">
                                     Upload File
                                 </label>
-                                <input #proimg accept="image/*" type="file"
-                                    style="margin-left:30px;" multiple
-                                    accept='image/*'
-                                    (change)="uploadFile(proimg.files)"
+                                <input   type="file"
+                                    style="margin-left:30px;" id="proimg" #proimg multiple 
+                                    accept='image/*' (change)="uploadFile(proimg.files)"
                                     class="block w-full text-sm text-gray-500 border border-gray-300 rounded cursor-pointer bg-gray-50 focus:outline-none" />
                                 <p id="fileName"
                                     class="mt-2 text-xs text-gray-600">No file
