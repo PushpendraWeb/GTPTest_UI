@@ -46,12 +46,12 @@ export class BaseService {
     }
 
     constructor(private http: HttpClient, private router: Router) {
-        this.environment = 'http://localhost:2000';
-        this.socketENV = 'ws://localhost:2000';
-        this.imgurl = 'http://localhost:2000/images/';
-        // this.environment = 'http://13.127.167.24:2000';
-        // this.socketENV = 'ws://13.127.167.24:2000';
-        // this.imgurl = 'http://13.127.167.24:2000/images/';
+        // this.environment = 'http://localhost:2000';
+        // this.socketENV = 'ws://localhost:2000';
+        // this.imgurl = 'http://localhost:2000/images/';
+        this.environment = 'http://13.127.167.24:2000';
+        this.socketENV = 'ws://13.127.167.24:2000';
+        this.imgurl = 'http://13.127.167.24:2000/images/';
     }
 
     public Get(routePath: string) {

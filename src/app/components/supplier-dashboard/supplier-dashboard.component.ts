@@ -73,6 +73,7 @@ export class SupplierDashboardComponent implements OnInit {
                 this.base.PostAuth('/add-product', { ...this.productForm.value }).subscribe((res: any) => {
                     if (res.status) {
                         Swal.fire("", res.message, 'success')
+                        this.getproductslist();
                         return
                     }
                     Swal.fire("", res.message, 'error')
@@ -80,7 +81,9 @@ export class SupplierDashboardComponent implements OnInit {
             } else {
                 this.base.PostAuth('/update-product', { ...this.productForm.value }).subscribe((res: any) => {
                     if (res.status) {
+                        
                         Swal.fire("", res.message, 'success')
+                        this.getproductslist();
                         return
                     }
                     Swal.fire("", res.message, 'error')
